@@ -27,10 +27,11 @@ class OrdersController < ApplicationController
   end
 
   def perform_stripe_charge
+    puts Stripe.api_key
     Stripe::Charge.create(
       source:      params[:stripeToken],
       amount:      cart_subtotal_cents,
-      description: "Khurram Virani's Jungle Order",
+      description: "Valeiy Nehovora's Jungle Order",
       currency:    'cad'
     )
   end

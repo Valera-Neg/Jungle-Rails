@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :products, except: [:edit, :update, :show]
   end
 
+  get 'about_us', to: 'about_us'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

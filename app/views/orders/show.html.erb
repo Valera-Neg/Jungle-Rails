@@ -8,6 +8,9 @@
      <h6>Your total:</h6>     
      <h4> <%= humanized_money_with_symbol @order.total %> </h4>
   </div>
+  <div>
+  <h3>Order #<%= @order.id%> details: </h3>
+  </div>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>

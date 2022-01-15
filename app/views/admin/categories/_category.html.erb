@@ -1,13 +1,14 @@
-
 <tr>
   <td>
    <h4><%= category.name %></h4>
   </td>
-  <td> 
-
-<%if !(Product.where(category_id: category.id).empty?)  %>
-<% else%>
-    <%= link_to fa_icon('trash'), [:admin, category], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure? Check if category empty! You Can Not delete empty category!" } %>
-  </td>
+    <td> 
+      <%if !(Product.where(category_id: category.id).empty?) %>
+        <%= 'Category contain products.'%>
+      <% else%>
+        <%= link_to fa_icon('trash'), [:admin, category], class: 'btn btn-sm btn-danger', 
+        method: :delete, data: { confirm: "Are you sure? Check if category empty! You Can Not delete empty category!" } %>
+        <%= ' ...   category currently empty.'%>
+    </td>
   <% end %>
 </tr> 

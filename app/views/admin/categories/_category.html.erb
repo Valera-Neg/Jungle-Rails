@@ -4,7 +4,7 @@
   </td>
     <td> 
       <%if !(Product.where(category_id: category.id).empty?) %>
-        <%= 'Category contain products.'%>
+        <%= 'Category contains products.'%>
       <% else%>
         <%= link_to fa_icon('trash'), [:admin, category], class: 'btn btn-sm btn-danger', 
         method: :delete, data: { confirm: "Are you sure? Check if category empty! You Can Not delete empty category!" } %>

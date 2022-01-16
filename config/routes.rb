@@ -5,6 +5,17 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
 
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+
+
+  
+
   resource :cart, only: [:show] do
     post   :add_item
     post   :remove_item
@@ -19,6 +30,10 @@ Rails.application.routes.draw do
   end
 
   get 'about_us', to: 'about_us'
+
+  resources :post
+ 
+
 
 
 

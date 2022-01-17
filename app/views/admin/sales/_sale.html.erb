@@ -1,0 +1,26 @@
+<tr>
+<% @sales.each do |sale| %>
+
+<% end %>
+  <td>
+    <h3><%= sale.name %></h3>
+  </td>
+
+  <td>
+    <h4><%= sale.starts_on %></h4>
+  </td>  
+   
+  <td>
+    <h4><%= sale.ends_on %></h4>
+  </td>
+  <td>
+    <h4>STATUS</h4>
+  </td>
+  <td>
+    <h4><%= sale.percent_off %></h4>
+  </td>
+  <td>
+    <%#= link_to fa_icon('trash'), [:admin, sales], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+  </td>
+  
+</tr>

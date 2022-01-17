@@ -1,26 +1,35 @@
 <tr>
-<% @sales.each do |sale| %>
+<% @sales.each do |sale| end %>
 
-<% end %>
   <td>
-    <h3><%= sale.name %></h3>
+    <strong><%= sale.name %></strong>
   </td>
 
   <td>
-    <h4><%= sale.starts_on %></h4>
+    <%= sale.starts_on %>
   </td>  
    
   <td>
-    <h4><%= sale.ends_on %></h4>
+    <%= sale.ends_on %>
   </td>
+
+  <td>   
+  <% if sale.finished? %>
+    <span class="label label-danger">Finished</span>
+      <%elsif sale.upcoming? %>
+      <span class="label label-warning">Upcoming</span> 
+      <% else %> 
+      <span class="label label-success">Active</span>
+     <% end %>
+  </td>
+
   <td>
-    <h4>STATUS</h4>
+    <%= sale.percent_off %>
   </td>
+
   <td>
-    <h4><%= sale.percent_off %></h4>
+    <%= link_to fa_icon('trash'), [:admin, sale], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
   </td>
-  <td>
-    <%#= link_to fa_icon('trash'), [:admin, sales], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
-  </td>
-  
+ 
 </tr>
+ 

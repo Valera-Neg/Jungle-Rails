@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-#   pending "add some examples to (or delete) #{__FILE__}"
-# end
+
 
 before do
   @user = User.new(
@@ -14,7 +13,7 @@ before do
   )
 end
 
-# describe User do
+
 
   subject {
     User.create(
@@ -32,6 +31,7 @@ end
     it "password should be = password_confirmation" do
       expect(subject.password).to be == subject.password_confirmation
     end
+
 
 
 
@@ -73,6 +73,8 @@ end
     end
 
 
+
+
     it "should not let a user be created without an first name address" do
       user = User.new(
       first_name: "", 
@@ -83,6 +85,8 @@ end
       )
       expect(user).to_not be_valid
     end
+
+
 
 
     it "should not let a user be created without an last name address" do
@@ -97,24 +101,21 @@ end
     end
 
 
-    
 
+
+    it "should not let a user be created with length og password less then 5 characters" do
+      user = User.new(
+      first_name: "Example User", 
+      last_name: "",
+      email: "user@example.com", 
+      password: "1234", 
+      password_confirmation: "1234"
+      )
+      expect(user).to_not be_valid
+    end
    
 
-    # describe User, 'validations' do
-      # it { should @user.validate_uniqueness_of(:email) }
-      # it { should @user.validate_presence_of(:email) }
-      # it { should @user.validate_format_of(:email).with_message(VALID_EMAIL_REGEX) }
-    # end
-
-
-
-
-    # it { should validate_uniqueness_of(:email) }
-    # it { should validate_presence_of(:email) }
-    # it { should validate_format_of(:email).with_message(VALID_EMAIL_REGEX) }
-
-
+  
 
 
 

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
-  validates :password, length: {minimum: 2}
+  validates :password, length: {minimum: 5}
   before_save :downcase_fields
   def downcase_fields
     self.email.downcase!

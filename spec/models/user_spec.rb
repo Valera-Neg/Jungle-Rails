@@ -3,15 +3,15 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
 
-before do
-  @user = User.new(
-    first_name: "Example User", 
-    last_name: "Example User1", 
-    email: "user@example.com",
-    password: "foobar123", 
-    password_confirmation: "foobar123"
-  )
-end
+  before do
+    @user = User.new(
+      first_name: "Example User", 
+      last_name: "Example User1", 
+      email: "user@example.com",
+      password: "foobar123", 
+      password_confirmation: "foobar123"
+    )
+  end 
 
 
 
@@ -37,7 +37,7 @@ end
 
     it "should not create user if password and password_confirmation are unequal" do
       user = User.new(
-        first_name: "Example User", 
+      first_name: "Example User", 
       last_name: "Example User1",
       email: "user@example.com", 
       password: "foobar123", 
@@ -63,7 +63,7 @@ end
 
     it "should not let a user be created without an email address" do
       user = User.new(
-        first_name: "Example User", 
+      first_name: "Example User", 
       last_name: "Example User1",
       email: " ", 
       password: "foobar123", 
@@ -113,10 +113,59 @@ end
       )
       expect(user).to_not be_valid
     end
-   
-
-  
 
 
+
+    describe 'Validations' do
+      it "emails should be defferent since spaces" do
+        user = User.new(email: "user@example.com")
+        @user = User.new(email: " user@example.com ")
+          expect(user).to_not be == @user
+      end
+    end
+ 
+
+
+
+    describe 'Validations' do
+      it "should delete spaces before or after email" do
+      user = User.new(
+        first_name: "Example User", 
+        last_name: "Example User1",
+        email: "user@example.com", 
+        password: "1234567890", 
+        password_confirmation: "1234567890"
+        )
+          @user = User.authenticate_with_credentials(" user@example.com  ", "1234567890")
+          expect(user.email && user.password) == @user
+      end
+    end
+ 
+
+
+
+    describe '.authenticate_with_credentials' do
+      it "emails should be defferent since upper case" do
+        user = User.new(email: "user@example.com")
+        @user = User.new(email: " USER@exaMPle.com ")
+          expect(user).to_not be == @user
+      end
+    end
+
+
+
+  describe 'Validations' do
+      it "should remove spaces and upper case  before or after email" do
+      user = User.new(
+        first_name: "Example User", 
+        last_name: "Example User1",
+        email: "user@example.com", 
+        password: "1234567890", 
+        password_confirmation: "1234567890"
+        )
+          @user = User.authenticate_with_credentials(" USER@exaMPle.com  ", "1234567890")
+          expect(user.email && user.password) == @user
+      end
+    end
 
 end

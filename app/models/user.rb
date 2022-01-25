@@ -5,7 +5,13 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
   validates :password, length: {minimum: 5}
   before_save :downcase_fields
+
   def downcase_fields
     self.email.downcase!
  end
+
+def self.authenticate_with_credentials(email, password)
+  @user = self.where("lower(email) = ?", email.delete(' ').downcase).first.try(:authenticate, password)
+end
+
 end

@@ -63,6 +63,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
 end
 
-# group :development, :test do
-#   gem 'shoulda-matchers', '~> 5.0'
-# end
+group :test do
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'database_cleaner'
+end
